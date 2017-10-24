@@ -1260,7 +1260,7 @@ function addCountryCode (iso2, dialCode, priority) {
 
 for (let i = 0; i < rawAllCountries.length; i++) {
     // countries
-    
+
     let c = rawAllCountries[i];
     allCountries.push({
       name: c[0],
@@ -1282,9 +1282,10 @@ for (let i = 0; i < rawAllCountries.length; i++) {
             // full dial code is country code + dial code
             var dialCode = c[2] + c[5][j];
             addCountryCode(c[1], dialCode);
-     
+
             let virtualCountry = Object.assign({},allCountries[countryIdx]);
             virtualCountry.dialCode = dialCode;
+            virtualCountry.isVirtual = true;
             allCountries.push(virtualCountry);
         }
     }

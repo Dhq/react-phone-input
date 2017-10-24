@@ -436,6 +436,7 @@ class ReactPhoneInput extends React.Component {
 
   getCountryDropDownList() {
 		let countryDropDownList = map(this.state.preferredCountries.concat(this.state.onlyCountries), (country, index) => {
+      if(this.props.excludeAreaCodes && country.isVirtual) return null;
 			let itemClasses = classNames({
 				country: true,
 				preferred: country.iso2 === 'us' || country.iso2 === 'gb',
@@ -589,7 +590,8 @@ ReactPhoneInput.propTypes = {
     onBlur: PropTypes.func,
     onFocus: PropTypes.func,
     onClick: PropTypes.func,
-    onKeyDown: PropTypes.func
+    onKeyDown: PropTypes.func,
+    excludeAreaCodes: PropTypes.bool
 };
 
 export default ReactPhoneInput;
